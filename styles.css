@@ -56,7 +56,7 @@ ul { list-style: none; }
 .nav__links a:not(.btn):hover { color: #fff; }
 
 /* ---------- Hero ---------- */
-.hero { position: relative; padding: 150px 0 70px; overflow: hidden; isolation: isolate; }
+.hero { position: relative; padding: 150px 0 100px; overflow: hidden; isolation: isolate; }
 .hero__glow { position: absolute; border-radius: 50%; filter: blur(90px); z-index: -1; }
 .hero__glow--a { width: 620px; height: 620px; background: rgba(94, 0, 185, .55); top: -180px; right: -120px; }
 .hero__glow--b { width: 480px; height: 480px; background: rgba(160, 60, 255, .22); bottom: -160px; left: -160px; }
@@ -130,6 +130,7 @@ h2 { font-size: clamp(1.9rem, 3.6vw, 2.8rem); line-height: 1.12; letter-spacing:
   box-shadow: 0 10px 26px -10px var(--c1);
 }
 .card__icon svg { width: 28px; height: 28px; }
+.card__logo { width: 56px; height: 56px; border-radius: 16px; object-fit: cover; box-shadow: 0 10px 26px -10px var(--c1), 0 0 0 1px rgba(255,255,255,.08); }
 .tag { font-size: .78rem; font-weight: 600; color: var(--muted); padding: .3rem .75rem; border-radius: 999px; border: 1px solid var(--borda); }
 .tag--soon { color: #fde68a; border-color: rgba(250, 204, 21, .35); background: rgba(250, 204, 21, .08); }
 .card h3 { font-size: 1.6rem; font-weight: 800; letter-spacing: -.02em; }

@@ -55,10 +55,19 @@
           </div>
         </div>
         <div class="hero__art reveal" aria-hidden="true">
-          <div class="orb">
+          <div class="orb" id="orb">
+            <div class="orb__aura"></div>
             <div class="orb__ring orb__ring--1"></div>
             <div class="orb__ring orb__ring--2"></div>
-            <img src="/assets/pomba-branca.png" alt="" class="orb__dove" width="608" height="608" />
+            <div class="orb__orbit orb__orbit--a"><span></span></div>
+            <div class="orb__orbit orb__orbit--b"><span></span></div>
+            <div class="orb__orbit orb__orbit--c"><span></span></div>
+            <div class="orb__blob">
+              <div class="orb__shine"></div>
+            </div>
+            <div class="orb__flight">
+              <img src="/assets/pomba-branca.png" alt="" class="orb__dove" width="608" height="608" />
+            </div>
           </div>
         </div>
       </div>
@@ -192,6 +201,19 @@
     const nav = document.querySelector('.nav');
     const onScroll = () => nav.classList.toggle('nav--scrolled', window.scrollY > 10);
     onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
+    // Parallax suave da logo no hero
+    const orb = document.getElementById('orb');
+    if (orb && matchMedia('(hover: hover)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      let tx = 0, ty = 0, cx = 0, cy = 0;
+      window.addEventListener('pointermove', (e) => {
+        tx = (e.clientX / innerWidth - .5) * 2; ty = (e.clientY / innerHeight - .5) * 2;
+      }, { passive: true });
+      (function loop() {
+        cx += (tx - cx) * .06; cy += (ty - cy) * .06;
+        orb.style.setProperty('--mx', cx.toFixed(3)); orb.style.setProperty('--my', cy.toFixed(3));
+        requestAnimationFrame(loop);
+      })();
+    }
     // Animações de entrada
     const els = document.querySelectorAll('.reveal');
     if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {

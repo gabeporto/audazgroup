@@ -94,15 +94,12 @@ h1 { font-size: clamp(2.4rem, 5.4vw, 4.2rem); line-height: 1.06; letter-spacing:
 }
 .orb__blob {
   position: relative; width: 82%; aspect-ratio: 1; overflow: hidden;
-  background: radial-gradient(circle at 30% 25%, #8a2bff 0%, var(--roxo) 45%, #3d0078 100%);
+  background:
+    radial-gradient(circle at var(--sx, 30%) var(--sy, 25%), rgba(196, 140, 255, .55) 0%, transparent 38%),
+    radial-gradient(circle at 30% 25%, #8a2bff 0%, var(--roxo) 45%, #3d0078 100%);
   box-shadow: inset 0 2px 0 rgba(255,255,255,.25), inset 0 -24px 60px rgba(0,0,0,.3), 0 40px 90px -30px rgba(122, 28, 255, .9);
-  animation: morph 12s ease-in-out infinite;
+  animation: morph 12s ease-in-out infinite, glint 9s ease-in-out infinite;
   transform: translate3d(calc(var(--mx) * -8px), calc(var(--my) * -8px), 0);
-}
-.orb__shine {
-  position: absolute; inset: -40%;
-  background: conic-gradient(from 90deg, transparent 0 60%, rgba(255,255,255,.18) 70%, transparent 80%);
-  animation: spin 9s linear infinite; mix-blend-mode: soft-light;
 }
 .orb__flight {
   position: absolute; inset: 0; z-index: 2; display: grid; place-items: center;
@@ -139,6 +136,13 @@ h1 { font-size: clamp(2.4rem, 5.4vw, 4.2rem); line-height: 1.06; letter-spacing:
 }
 @keyframes pulse { 0%, 100% { opacity: .55; transform: scale(.95); } 50% { opacity: .9; transform: scale(1.05); } }
 @keyframes breathe { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.04); opacity: .5; } }
+@property --sx { syntax: "<percentage>"; inherits: false; initial-value: 30%; }
+@property --sy { syntax: "<percentage>"; inherits: false; initial-value: 25%; }
+@keyframes glint {
+  0%, 100% { --sx: 28%; --sy: 22%; }
+  33% { --sx: 70%; --sy: 30%; }
+  66% { --sx: 40%; --sy: 72%; }
+}
 @keyframes spin { to { transform: rotate(360deg); } }
 
 .stats {
